@@ -122,3 +122,46 @@ $$\frac{\partial E_{total}}{\partial w_4} = \left((a_{o1} - t_1) \cdot a_{o1} \c
 ![error 1.0](images/error_1.0.png)
 ### 2.0
 ![error 2.0](images/error_2.0.png)
+
+# Part 2 - Custom Neural Net
+
+### Network Structure
+```
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 16, 28, 28]             160
+       BatchNorm2d-2           [-1, 16, 28, 28]              32
+            Conv2d-3           [-1, 16, 28, 28]           2,320
+       BatchNorm2d-4           [-1, 16, 28, 28]              32
+            Conv2d-5           [-1, 16, 28, 28]           2,320
+       BatchNorm2d-6           [-1, 16, 28, 28]              32
+         MaxPool2d-7           [-1, 16, 14, 14]               0
+           Dropout-8           [-1, 16, 14, 14]               0
+            Conv2d-9           [-1, 16, 14, 14]           2,320
+      BatchNorm2d-10           [-1, 16, 14, 14]              32
+           Conv2d-11           [-1, 16, 14, 14]           2,320
+      BatchNorm2d-12           [-1, 16, 14, 14]              32
+           Conv2d-13           [-1, 16, 14, 14]           2,320
+      BatchNorm2d-14           [-1, 16, 14, 14]              32
+        MaxPool2d-15             [-1, 16, 7, 7]               0
+          Dropout-16             [-1, 16, 7, 7]               0
+           Conv2d-17             [-1, 16, 7, 7]           2,320
+      BatchNorm2d-18             [-1, 16, 7, 7]              32
+           Conv2d-19             [-1, 16, 7, 7]           2,320
+      BatchNorm2d-20             [-1, 16, 7, 7]              32
+           Conv2d-21             [-1, 16, 7, 7]           2,320
+      BatchNorm2d-22             [-1, 16, 7, 7]              32
+          Dropout-23             [-1, 16, 7, 7]               0
+           Linear-24                   [-1, 10]             170
+================================================================
+Total params: 19,178
+Trainable params: 19,178
+```
+### Some information about Network
+- Batch Size: 128
+- Used Dropout with 20% at Droput-8 and Dropout-16 and used 15% at Dropout-23
+- BatchNorm after each Conv layer.
+- Its a long neural net with constant channel size (16) as the fattening of channels increased the parameters drastically. 
+- Two Max-pooling to increase RF and the last layers has GAP with FC before Softmax.
+- ReLU is the activation function after each Conv2D layer.
