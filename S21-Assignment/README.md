@@ -4,6 +4,8 @@
 - Created a GPT2 (124M parameters) from scratch with some optimizations and trained on Shakepeare all works dataset. 
 - huggingface app: [Shakespeare GPT2](https://huggingface.co/spaces/kg7/ShakespearGPT2)
 
+![GPT_training](logs/img.png)
+
 ### Model structure 
 ```
 ====================================================================================================
